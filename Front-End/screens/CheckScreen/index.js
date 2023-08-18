@@ -8,7 +8,17 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 
 export const CheckScreen = ({navigation}) => {
-const [count, setCount] = useState(105);
+const [counter, setCounter] = useState(105);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((counter) => counter - 1);
+    }, 10000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -34,19 +44,16 @@ const [count, setCount] = useState(105);
           backgroundColor: "#ffffff",
           backgroundColor: "#167bf0"
         }}>
-        <Txt style={{textAlign: "center", fontSize: 58, fontWeight: "bold", color: "white"}}>{count}</Txt>
+        <Txt style={{textAlign: "center", fontSize: 58, fontWeight: "bold", color: "white"}}>{counter}</Txt>
         </View>
-        <View style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+        {/* <View style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
         <FontAwesome name='rotate-right' size={15} color="#6b6a6a"/>
         <Button
-             onPress={() => {setCount(count - 2)}} title="Refresh"
+             onPress={() => {setCounter(counter - 2)}} title="Refresh"
            />
-        </View>
-           {/* <Button
-             onPress={() => {setCount(0)}} title="Reset"
-           /> */}
+        </View> */}
         <TouchableOpacity
-        onPress={() => {setCount(0)}}
+        onPress={() => {setCounter(0)}}
         style={{
           padding: 12,
           paddingHorizontal: 30,
