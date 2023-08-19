@@ -1,14 +1,51 @@
 import { View, Text, Image, Pressable, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/core'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../../components/Button';
+import { auth } from '../firebase'
 
 export const RegisterScreen = ({ navigation }) => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+
+    const navigation = useNavigation()
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        navigation.replace("home")
+      }
+    })
+
+    return unsubscribe
+  }, [])
+
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Registered with:', user.email);
+      })
+      .catch(error => alert(error.message))
+  }
+
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+      })
+      .catch(error => alert(error.message))
+  }
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
@@ -48,6 +85,7 @@ export const RegisterScreen = ({ navigation }) => {
                         <TextInput
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
+                            
                             keyboardType='email-address'
                             style={{
                                 width: "100%"
@@ -56,7 +94,7 @@ export const RegisterScreen = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={{ marginBottom: 12 }}>
+                {/* <View style={{ marginBottom: 12 }}>
                     <Text style={{
                         fontSize: 16,
                         fontWeight: 400,
@@ -77,6 +115,8 @@ export const RegisterScreen = ({ navigation }) => {
                         <TextInput
                             placeholder='+23'
                             placeholderTextColor={COLORS.black}
+                            value={email}
+                            onChangeText={text => setEmail(text)}
                             keyboardType='numeric'
                             style={{
                                 width: "12%",
@@ -95,7 +135,7 @@ export const RegisterScreen = ({ navigation }) => {
                             }}
                         />
                     </View>
-                </View>
+                </View> */}
 
                 <View style={{ marginBottom: 12 }}>
                     <Text style={{
@@ -117,6 +157,8 @@ export const RegisterScreen = ({ navigation }) => {
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
+                            value={password}
+                            onChangeText={text => setPassword(text)}
                             secureTextEntry={isPasswordShown}
                             style={{
                                 width: "100%"
@@ -157,7 +199,7 @@ export const RegisterScreen = ({ navigation }) => {
                 </View>
 
                 <Button
-                    onPress={() => navigation.navigate("login")}
+                    onPress={() => onPress={handleSignUp}}
                     title="Sign Up"
                     filled
                     style={{

@@ -1,12 +1,49 @@
 import { View, Text, Image , Pressable, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/core'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../../components/Button';
+import { auth } from '../firebase'
+
 
 export const LoginPageScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        navigation.replace("home")
+      }
+    })
+
+    return unsubscribe
+  }, [])
+
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Registered with:', user.email);
+      })
+      .catch(error => alert(error.message))
+  }
+
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+      })
+      .catch(error => alert(error.message))
+  }
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     
@@ -49,6 +86,8 @@ export const LoginPageScreen = ({ navigation }) => {
                         <TextInput
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
+                            value={email}
+                            onChangeText={text => setEmail(text)}
                             keyboardType='email-address'
                             style={{
                                 width: "100%"
@@ -77,6 +116,8 @@ export const LoginPageScreen = ({ navigation }) => {
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
+                            value={password}
+                            onChangeText={text => setPassword(text)}
                             secureTextEntry={isPasswordShown}
                             style={{
                                 width: "100%"
@@ -117,7 +158,7 @@ export const LoginPageScreen = ({ navigation }) => {
                 </View>
 
                 <Button
-                     onPress={() => navigation.navigate("home")}
+                     onPress={() => onPress={handleLogin}}
                     title="Login"
                     filled
                     style={{
