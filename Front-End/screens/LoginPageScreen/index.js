@@ -6,44 +6,44 @@ import COLORS from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../../components/Button';
-import { auth } from '../firebase'
+// import { auth } from '../../firebase'
 
 
 export const LoginPageScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const navigation = useNavigation()
+//   const navigation = useNavigation()
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        navigation.replace("home")
-      }
-    })
+//   useEffect(() => {
+//     const unsubscribe = auth.onAuthStateChanged(user => {
+//       if (user) {
+//         navigation.replace("home")
+//       }
+//     })
 
-    return unsubscribe
-  }, [])
+//     return unsubscribe
+//   }, [])
 
-  const handleSignUp = () => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
-      })
-      .catch(error => alert(error.message))
-  }
+//   const handleSignUp = () => {
+//     auth
+//       .createUserWithEmailAndPassword(email, password)
+//       .then(userCredentials => {
+//         const user = userCredentials.user;
+//         console.log('Registered with:', user.email);
+//       })
+//       .catch(error => alert(error.message))
+//   }
 
-  const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
-      })
-      .catch(error => alert(error.message))
-  }
+//   const handleLogin = () => {
+//     auth
+//       .signInWithEmailAndPassword(email, password)
+//       .then(userCredentials => {
+//         const user = userCredentials.user;
+//         console.log('Logged in with:', user.email);
+//       })
+//       .catch(error => alert(error.message))
+//   }
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     
@@ -158,7 +158,9 @@ export const LoginPageScreen = ({ navigation }) => {
                 </View>
 
                 <Button
-                     onPress={() => onPress={handleLogin}}
+                     onPress={() => {
+                        navigation.navigate("home");
+                      }}
                     title="Login"
                     filled
                     style={{
