@@ -28,12 +28,12 @@ export const SettingScreen = ({navigation}) => {
         <Txt style={styles.linkTitle}>Theme Settings</Txt>
               <View style={styles.downArrow} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("")} style={styles.link}>
+          <TouchableOpacity onPress={() => navigation.navigate("notification")} style={styles.link}>
           <FontAwesome name='bell-o' size={20} color="#70706f"/>
         <Txt style={styles.linkTitle}>Notifications & Sound</Txt>
               <View style={styles.downArrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.link}>
+          <TouchableOpacity onPress={() => navigation.navigate("history")} style={styles.link}>
           <FontAwesome name='history' size={20} color="#70706f"/>
               <Txt style={styles.linkTitle}>Queue History</Txt>
               <View style={styles.downArrow}/>
