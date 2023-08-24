@@ -14,9 +14,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "black"
+      "backgroundColor": "#0a0a0a"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,10 +25,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(QUMI) to access camera.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b2af1202-edb5-42bb-854b-560cec573a0f"
+      }
+    },
+    "owner": "swaestone",
+    "android": {
+      "package": "com.swaestone.QMSapp"
     }
   }
 }
