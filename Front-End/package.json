@@ -44,5 +44,9 @@
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "^9.5.0"
   },
+  "resolutions": {
+    "@expo/config-plugins": "~6.0.0",
+    "@expo/prebuild-config": "~6.0.0"
+  },
   "private": true
 }
