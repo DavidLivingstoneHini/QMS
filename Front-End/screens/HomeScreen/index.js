@@ -78,7 +78,7 @@ export const HomeScreen = ({navigation}) => {
 
         <ScrollView>
         <Card>
-          <Text style={{color: "#757373", textAlign: "center", marginBottom: 10, fontSize: 17}}>Hi Evans !</Text>
+          <Text style={{color: "#757373", textAlign: "center", marginBottom: 10, fontSize: 16}}>Hello, Welcome!</Text>
           <Image
             style={{ width: 70, height: 70, borderRadius: 70/ 2, alignSelf: 'center' }}
             source={{
