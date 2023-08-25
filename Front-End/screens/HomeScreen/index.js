@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
       width: "100%",
       borderBottomLeftRadius: 40,
       borderBottomRightRadius: 40,
-      top: -20
+      top: -40
   },
   greeting: {
     fontSize: 24,
