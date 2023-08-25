@@ -62,9 +62,9 @@ export const SettingScreen = ({navigation}) => {
               <Txt style={styles.linkTitle}>Account Settings</Txt>
               <View style={styles.downArrow}/>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.link}>
+          <TouchableOpacity onPress={() => navigation.navigate("login")} style={styles.link}>
           <FontAwesome name='sign-out' size={20} color="#70706f"/>
-              <Txt style={styles.linkTitle}>Logout</Txt>
+              <Txt style={styles.linkTitle1}>Logout</Txt>
               <View style={styles.downArrow}/>
           </TouchableOpacity>
         </View>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   width: "100%",
   borderBottomLeftRadius: 40,
   borderBottomRightRadius: 40,
-  top: -20
+  top: -40
     },
     greeting: {
       fontSize: 24,
@@ -111,10 +111,12 @@ const styles = StyleSheet.create({
     },
     links :{
       paddingHorizontal: 20,
-      paddingVertical:30,
+      paddingVertical: 15,
       borderColor: "#30302f",
       borderWidth: 1.0,
       borderRadius: 50,
+      marginTop: 1,
+      marginBottom: 90
     },
     link: {
       backgroundColor: '#fff',
@@ -127,14 +129,17 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: "space-between",
       paddingHorizontal: 20,
-      alignItems: "left",
+      alignItems: "center",
       marginBottom: 5
 
     },
     linkTitle: {
       fontSize: 18,
       color: "#5E5F61",
-      // marginLeft: -60
+    },
+    linkTitle1: {
+      fontSize: 18,
+      color: "red",
     },
     downArrow: {
       width: 10,
