@@ -7,7 +7,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {BottomNav} from "../../components/BottomNav"
 import { Txt } from '../../components/Txt';
 import sun from "../../assets/images/sun.png"
-import profile from "../../assets/images/email.png"
 
 export const SettingScreen = ({navigation}) => {
 
@@ -58,7 +57,7 @@ export const SettingScreen = ({navigation}) => {
               <Txt style={styles.linkTitle}>About company</Txt>
               <View style={styles.downArrow}/>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("profile")}>
+          <TouchableOpacity style={styles.link}>
           <FontAwesome name='user' size={20} color="#70706f"/>
               <Txt style={styles.linkTitle}>Account Settings</Txt>
               <View style={styles.downArrow}/>
