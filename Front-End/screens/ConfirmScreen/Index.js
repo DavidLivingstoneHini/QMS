@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    marginTop: -20,
+    marginTop: 5,
     padding: 16,
     elevation: 2,
     flexDirection: 'row',
@@ -197,7 +197,7 @@ paddingHorizontal: 40,
 width: "100%",
 borderBottomLeftRadius: 40,
 borderBottomRightRadius: 40,
-top: -20
+top: -2
   },
   greeting: {
     marginTop: 10,
