@@ -10,7 +10,7 @@ import { Txt } from '../../components/Txt';
 import sun from "../../assets/images/sun.png";
 
 // update this url -> "<new_ngrok_host_url>/posts"
-const url = 'https://my-json-server.typicode.com/DavidLivingstoneHini/mern-social-jsonserver/employee'
+const url = 'https://test-api-dpqa.onrender.com/employee'
 
 const headers = {
   'Content-Type': 'application/json',
